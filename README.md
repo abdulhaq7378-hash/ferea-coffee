@@ -1,5 +1,7 @@
 # Feréa Coffee House — café website concept
 
+**Live site → https://abdulhaq7378-hash.github.io/ferea-coffee/**
+
 A complete, responsive café website for **Feréa Coffee House**, a fictional specialty coffee house in Manipal, Karnataka. Built as a portfolio piece by Abdul Haq to show cafés and restaurants what a modern, editorial website can look like.
 
 > Feréa is not a real business. Reviews and articles are illustrative, and the ordering flow is a demo (no backend, no payments).
