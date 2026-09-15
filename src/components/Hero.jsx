@@ -85,8 +85,8 @@ export default function Hero({ ready = true }) {
           </motion.div>
 
           <motion.ul initial="hidden" animate={play} variants={fade} custom={1.2} className="mt-6 flex flex-wrap gap-x-6 gap-y-2 text-sm text-roast/80 md:mt-10">
-            <li className="flex items-center gap-2"><Icon name="pin" className="size-4 text-caramel" />Near Manipal Lake</li>
-            <li className="flex items-center gap-2"><Icon name="clock" className="size-4 text-caramel" />Open daily from {brand.hours[0].time.slice(0, 5)}</li>
+            <li className="flex items-center gap-2"><Icon name="pin" className="size-4 text-caramel" />Near Mandavi Emerald, End Point Road</li>
+            <li className="flex items-center gap-2"><Icon name="clock" className="size-4 text-caramel" />Open daily from 11am</li>
           </motion.ul>
         </motion.div>
 
@@ -131,7 +131,7 @@ export default function Hero({ ready = true }) {
               className="absolute -bottom-8 -left-6 w-[38%] bg-[#fffaf2] p-2 pb-1 shadow-[0_24px_50px_-20px_rgba(43,24,16,.55)] sm:-left-14"
             >
               <Img src={photos.heroEspresso} alt="Hands passing a glass of cutting chai in golden light" sizes="200px" className="aspect-square w-full object-cover" />
-              <figcaption className="py-1.5 text-center font-hand text-lg text-roast md:text-xl">the 7am chai</figcaption>
+              <figcaption className="py-1.5 text-center font-hand text-lg text-roast md:text-xl">the evening chai</figcaption>
             </motion.figure>
 
             {/* handwritten note */}

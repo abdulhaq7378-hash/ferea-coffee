@@ -40,8 +40,8 @@ export default function Care() {
               </Reveal>
               <Reveal delay={0.1} className="mt-20 hidden pr-8 lg:block">
                 <p className="display text-[5rem] leading-none text-caramel/40">“</p>
-                <blockquote className="display -mt-8 text-5xl leading-[0.95] text-roast">We bake before<br />we brew. Every<br />single morning.</blockquote>
-                <p className="mt-4 -rotate-2 font-hand text-2xl text-caramel">— head baker, 5:30am</p>
+                <blockquote className="display -mt-8 text-5xl leading-[0.95] text-roast">Nothing sits<br />overnight. It’s all<br />made today.</blockquote>
+                <p className="mt-4 -rotate-2 font-hand text-2xl text-caramel">— our kitchen, every day</p>
               </Reveal>
             </article>
 

@@ -13,7 +13,9 @@ export default function Menu() {
   const [active, setActive] = useState(0)
   const listRef = useRef(null)
   const category = menu.find((c) => c.key === catKey)
-  const current = category.items[active] ?? category.items[0]
+  // the homepage shows dishes with photography; the full menu lists everything
+  const items = category.items.filter((i) => i.photo)
+  const current = items[active] ?? items[0]
 
   const selectCategory = (key) => {
     setCatKey(key)
@@ -39,7 +41,7 @@ export default function Menu() {
             <LineReveal className="display ink mt-5 text-[clamp(3.8rem,17vw,5.5rem)] md:text-[clamp(5.5rem,9vw,8.5rem)]" lines={['Drinks for', 'everyday.']} />
           </div>
           <Reveal delay={0.15} className="flex flex-col items-start gap-5 md:max-w-xs md:items-end md:text-right">
-            <p className="leading-relaxed text-roast/85">Espresso classics, slow teas, all-day eats and a morning bake — all made to order.</p>
+            <p className="leading-relaxed text-roast/85">Espresso classics, cold coffee, thickshakes, bites and desserts — all made to order.</p>
             <div className="hidden md:block">
               <Button tone="outline" onClick={() => open('menu')}>View full menu</Button>
             </div>
@@ -113,7 +115,7 @@ export default function Menu() {
                 exit={{ opacity: 0, y: -10, transition: { duration: 0.2 } }}
                 variants={{ show: { transition: { staggerChildren: 0.05 } } }}
               >
-                {category.items.map((item, i) => (
+                {items.map((item, i) => (
                   <motion.li
                     key={item.id}
                     variants={{ hidden: { opacity: 0, y: 24 }, show: { opacity: 1, y: 0, transition: { duration: 0.6, ease } } }}
@@ -163,7 +165,7 @@ export default function Menu() {
               transition={{ duration: 0.3, ease }}
               className="mt-3 md:grid md:grid-cols-2 md:gap-x-6"
             >
-              {category.items.map((item) => (
+              {items.map((item) => (
                 <li key={item.id} className="border-b border-dashed border-roast/25">
                   <button
                     type="button"

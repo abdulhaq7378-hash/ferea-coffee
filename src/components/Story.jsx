@@ -7,7 +7,7 @@ import Img from './ui/Img'
 import { LineReveal, ParallaxFrame, Reveal } from './ui/Motion'
 
 const facts = [
-  { value: '07:00', label: 'Doors open, and the first shot is already dialled in.' },
+  { value: '11 AM', label: 'Doors open — lectures or not, the first shot is dialled in.' },
   { value: '16 hrs', label: 'The slow steep behind every glass of cold brew.' },
   { value: '02', label: 'Partner estates in Chikmagalur & Coorg.' },
 ]
@@ -38,7 +38,7 @@ export default function Story() {
                 We believe coffee should give you a reason to slow down. Feréa brings together carefully sourced beans, fresh food and a warm space designed for everything from quiet mornings to long conversations.
               </p>
               <p className="mt-4 hidden leading-relaxed text-ivory/80 sm:block">
-                Tucked just off End Point Road, a few minutes from the lake, we’re the neighbourhood table for students, early walkers, weekend families and anyone who needs a good cup and a little quiet.
+                Tucked near Mandavi Emerald on End Point Road, just behind MAHE, we’re the table between lectures, the late-evening study spot and the weekend catch-up for anyone who needs a good cup and a little quiet.
               </p>
               <p className="mt-6 -rotate-2 font-hand text-3xl text-espresso">— the Feréa team</p>
             </Reveal>

@@ -38,7 +38,7 @@ export default function FinalCta() {
             </motion.span>
           </motion.h2>
           <p className="mx-auto mt-8 max-w-md text-ivory/85">
-            {brand.addressLine}. Open every day from {brand.hours[0].time.slice(0, 5)}.
+            {brand.addressLine}. Open 11am–10pm, weekends 12pm–11pm.
           </p>
           <div className="mt-8 flex flex-wrap justify-center gap-3">
             <Button size="lg" tone="ivory" onClick={() => open('order')}>Order now</Button>

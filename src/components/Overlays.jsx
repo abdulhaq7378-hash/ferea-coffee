@@ -53,7 +53,8 @@ function CloseButton({ onClose, closeRef, className = '' }) {
 
 /* ————— Order drawer (demo checkout) ————— */
 
-const quickPicks = [signature, combo, menu[0].items[5], menu[3].items[0]]
+// signature, combo, classic cold coffee, loaded fries
+const quickPicks = [signature, combo, menu[0].items[3], menu[1].items[2]]
 const pickup = ['In 15 min', 'In 30 min', 'Dine-in']
 
 function OrderDrawer({ onClose }) {
@@ -141,7 +142,7 @@ function OrderDrawer({ onClose }) {
                         <Img src={item.photo} alt="" sizes="200px" className="aspect-[4/3] w-full rounded-2xl object-cover" />
                       ) : (
                         <span className="grid aspect-[4/3] w-full place-items-center rounded-2xl bg-caramel text-center text-ivory">
-                          <span className="display text-2xl leading-none">Cappuccino<br />+ croissant</span>
+                          <span className="display text-2xl leading-none">Cold coffee<br />+ sandwich</span>
                         </span>
                       )}
                       <span className="mt-2 flex items-center justify-between gap-2">
@@ -207,7 +208,7 @@ function FullMenu({ onClose }) {
         <div className="px-5 pb-16 md:px-12">
           <div className="flex flex-col justify-between gap-4 md:flex-row md:items-end">
             <h2 className="display ink text-[clamp(4.5rem,20vw,12rem)]">The menu</h2>
-            <p className="max-w-xs text-roast/75 md:pb-4 md:text-right">All prices in Indian Rupees, inclusive of taxes. Oat & almond milk at no extra charge.</p>
+            <p className="max-w-xs text-roast/75 md:pb-4 md:text-right">All prices in Indian Rupees, exclusive of 5% GST. Veg and non-veg dishes are marked.</p>
           </div>
           <div className="mt-10 grid gap-x-16 gap-y-14 md:grid-cols-2">
             {menu.map((cat) => (

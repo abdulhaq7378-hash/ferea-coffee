@@ -35,7 +35,7 @@ export default function Combo() {
             transition={{ duration: 1.1, ease }}
             className="absolute left-0 top-0 aspect-[4/5] w-[66%] overflow-hidden rounded-[2.25rem] shadow-[0_40px_70px_-40px_rgba(43,24,16,.8)]"
           >
-            <Img src={photos.comboLatte} alt="A cappuccino with latte art in a speckled cup" sizes="(min-width: 1024px) 26vw, 64vw" className="size-full object-cover" />
+            <Img src={photos.comboLatte} alt="A glass of cold coffee with chocolate drizzle" sizes="(min-width: 1024px) 26vw, 64vw" className="size-full object-cover" />
           </motion.div>
           <motion.div
             initial={{ opacity: 0, rotate: 0, y: 80 }}
@@ -44,7 +44,7 @@ export default function Combo() {
             transition={{ duration: 1.1, ease, delay: 0.15 }}
             className="absolute bottom-0 right-0 aspect-square w-[58%] overflow-hidden rounded-[2.25rem] border-[6px] border-ivory shadow-[0_40px_70px_-40px_rgba(43,24,16,.8)] md:border-8"
           >
-            <Img src={photos.comboCroissant} alt="Golden butter croissants fresh from the oven" sizes="(min-width: 1024px) 22vw, 56vw" className="size-full object-cover" />
+            <Img src={photos.comboCroissant} alt="A grilled paneer tikka sandwich" sizes="(min-width: 1024px) 22vw, 56vw" className="size-full object-cover" />
           </motion.div>
 
           <motion.div
@@ -62,7 +62,7 @@ export default function Combo() {
           </motion.div>
 
           <p className="absolute bottom-[8%] left-[2%] -rotate-6 font-hand text-2xl leading-tight text-roast md:text-3xl">
-            best enjoyed<br />before 11:30 ☺
+            your post-lecture<br />reward ☺
           </p>
         </div>
 
@@ -74,8 +74,8 @@ export default function Combo() {
             <span className="absolute -right-4 top-[58%] size-8 rounded-full bg-ivory" aria-hidden="true" />
 
             <Pill>Special offer</Pill>
-            <h2 className="display ink mt-5 text-[clamp(3.6rem,17vw,5rem)] md:text-[clamp(5rem,7vw,6.6rem)]">Breakfast<br />combo</h2>
-            <p className="mt-4 max-w-sm text-lg leading-relaxed text-roast/85">Start your morning with something worth slowing down for.</p>
+            <h2 className="display ink mt-5 text-[clamp(3.6rem,17vw,5rem)] md:text-[clamp(5rem,7vw,6.6rem)]">Study break<br />combo</h2>
+            <p className="mt-4 max-w-sm text-lg leading-relaxed text-roast/85">Between lectures, deadlines and late-night revision — refuel properly.</p>
 
             <ol className="mt-8 space-y-4">
               {combo.items.map((it, i) => (
@@ -101,7 +101,7 @@ export default function Combo() {
               <Button size="lg" tone="espresso" onClick={() => addItem(combo)}>Get the deal</Button>
             </div>
             <p className="mt-6 flex items-center gap-2 text-sm text-roast/70">
-              <Icon name="clock" className="size-4 text-caramel" /> Served daily until 11:30 · dine-in or takeaway
+              <Icon name="clock" className="size-4 text-caramel" /> Available all day · dine-in or takeaway
             </p>
           </div>
         </Reveal>

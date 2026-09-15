@@ -17,12 +17,13 @@ const nameTones = {
   honey: 'bg-ivory text-espresso',
 }
 
-// resting pose for cards behind the front one
+// resting pose for cards behind the front one; cards deeper than the third wait out of sight
 const poses = [
-  { rotate: -3, x: 0, y: 0, scale: 1 },
-  { rotate: 7, x: '9%', y: 18, scale: 0.94 },
-  { rotate: -9, x: '-9%', y: 30, scale: 0.9 },
+  { rotate: -3, x: 0, y: 0, scale: 1, opacity: 1 },
+  { rotate: 7, x: '9%', y: 18, scale: 0.94, opacity: 1 },
+  { rotate: -9, x: '-9%', y: 30, scale: 0.9, opacity: 0.9 },
 ]
+const hiddenPose = { rotate: 0, x: 0, y: 40, scale: 0.85, opacity: 0 }
 
 export default function Testimonials() {
   const [index, setIndex] = useState(0)
@@ -50,7 +51,7 @@ export default function Testimonials() {
                 <button type="button" onClick={() => go(-1)} aria-label="Previous review" className="grid size-12 place-items-center rounded-full border-[1.5px] border-ivory/60 transition-colors hover:bg-ivory hover:text-caramel">
                   <ArrowIcon direction="left" className="size-4" />
                 </button>
-                <span className="label w-16 text-center text-lg tabular-nums">0{index + 1} / 0{n}</span>
+                <span className="label w-16 text-center text-lg tabular-nums">{String(index + 1).padStart(2, '0')} / {String(n).padStart(2, '0')}</span>
                 <button type="button" onClick={() => go(1)} aria-label="Next review" className="grid size-12 place-items-center rounded-full bg-ivory text-caramel transition-transform hover:scale-105">
                   <ArrowIcon className="size-4" />
                 </button>
@@ -61,14 +62,14 @@ export default function Testimonials() {
             <div className="order-1 mx-auto grid w-full max-w-[26rem] lg:order-2 lg:col-span-4 lg:col-start-6" aria-live="polite">
               {testimonials.map((t, i) => {
                 const depth = (i - index + n) % n
-                const pose = poses[depth]
+                const pose = poses[depth] ?? hiddenPose
                 const front = depth === 0
                 return (
                   <motion.figure
                     key={t.name}
                     className={`[grid-area:1/1] rounded-[2rem] p-4 shadow-[0_30px_60px_-30px_rgba(43,24,16,.7)] md:p-5 ${tones[t.tone]} ${front ? 'cursor-grab active:cursor-grabbing' : 'pointer-events-none'}`}
                     style={{ zIndex: n - depth }}
-                    animate={{ ...pose, opacity: depth === 2 ? 0.9 : 1 }}
+                    animate={pose}
                     transition={{ type: 'spring', stiffness: 170, damping: 22 }}
                     drag={front ? 'x' : false}
                     dragSnapToOrigin
