@@ -11,14 +11,18 @@ export default function Menu() {
   const { open, addItem, notify } = useStore()
   const [catKey, setCatKey] = useState(menu[0].key)
   const [active, setActive] = useState(0)
-  const railRef = useRef(null)
+  const listRef = useRef(null)
   const category = menu.find((c) => c.key === catKey)
   const current = category.items[active] ?? category.items[0]
 
   const selectCategory = (key) => {
     setCatKey(key)
     setActive(0)
-    railRef.current?.scrollTo({ left: 0, behavior: 'smooth' })
+    // on phones, bring the top of the list back under the sticky tabs
+    const top = listRef.current?.getBoundingClientRect().top
+    if (top !== undefined && top < 120 && window.innerWidth < 1024) {
+      window.scrollBy({ top: top - 140, behavior: 'smooth' })
+    }
   }
 
   const add = (item) => {
@@ -27,39 +31,44 @@ export default function Menu() {
   }
 
   return (
-    <section id="menu" className="relative py-24 md:py-32">
+    <section id="menu" className="relative py-20 md:py-32">
       <div className="container-x">
-        <div className="flex flex-col gap-8 md:flex-row md:items-end md:justify-between">
+        <div className="flex flex-col gap-6 md:flex-row md:items-end md:justify-between md:gap-8">
           <div>
             <Reveal><Pill>Our menu</Pill></Reveal>
             <LineReveal className="display ink mt-5 text-[clamp(3.8rem,17vw,5.5rem)] md:text-[clamp(5.5rem,9vw,8.5rem)]" lines={['Drinks for', 'everyday.']} />
           </div>
           <Reveal delay={0.15} className="flex flex-col items-start gap-5 md:max-w-xs md:items-end md:text-right">
-            <p className="leading-relaxed text-roast/85">Espresso classics, slow teas, all-day breakfast and a morning bake — all made to order.</p>
-            <Button tone="outline" onClick={() => open('menu')}>View full menu</Button>
+            <p className="leading-relaxed text-roast/85">Espresso classics, slow teas, all-day eats and a morning bake — all made to order.</p>
+            <div className="hidden md:block">
+              <Button tone="outline" onClick={() => open('menu')}>View full menu</Button>
+            </div>
           </Reveal>
         </div>
 
-        {/* Category tabs */}
-        <Reveal delay={0.1} className="-mx-4 mt-12 overflow-x-auto px-4 no-scrollbar md:mx-0 md:mt-16 md:px-0">
-          <div role="tablist" aria-label="Menu categories" className="flex w-max gap-1 rounded-full border-[1.5px] border-roast/15 bg-paper p-1.5">
-            {menu.map((c) => (
-              <button
-                key={c.key}
-                role="tab"
-                type="button"
-                aria-selected={c.key === catKey}
-                onClick={() => selectCategory(c.key)}
-                className={`label relative rounded-full px-5 py-2.5 text-lg transition-colors duration-300 md:px-7 md:text-xl ${c.key === catKey ? 'text-ivory' : 'text-roast hover:text-caramel'}`}
-              >
-                {c.key === catKey && (
-                  <motion.span layoutId="menu-tab" className="absolute inset-0 rounded-full bg-roast" transition={{ type: 'spring', stiffness: 380, damping: 32 }} />
-                )}
-                <span className="relative">{c.label}</span>
-              </button>
-            ))}
+        {/* Category tabs — sticky under the navbar on phones */}
+        <div className="sticky top-[3.9rem] z-30 -mx-4 mt-8 bg-ivory/95 px-4 py-2.5 md:static md:mx-0 md:mt-16 md:bg-transparent md:p-0">
+          <div className="overflow-x-auto no-scrollbar">
+            <div role="tablist" aria-label="Menu categories" className="flex w-full gap-0.5 rounded-full border-[1.5px] border-roast/15 bg-paper p-1 md:w-max md:gap-1 md:p-1.5">
+              {menu.map((c) => (
+                <button
+                  key={c.key}
+                  role="tab"
+                  type="button"
+                  aria-selected={c.key === catKey}
+                  onClick={() => selectCategory(c.key)}
+                  className={`label relative flex-1 whitespace-nowrap rounded-full px-2.5 py-2 text-[1rem] transition-colors duration-300 md:flex-none md:px-7 md:py-2.5 md:text-xl ${c.key === catKey ? 'text-ivory' : 'text-roast hover:text-caramel'}`}
+                >
+                  {c.key === catKey && (
+                    <motion.span layoutId="menu-tab" className="absolute inset-0 rounded-full bg-roast" transition={{ type: 'spring', stiffness: 380, damping: 32 }} />
+                  )}
+                  <span className="relative md:hidden">{c.short ?? c.label}</span>
+                  <span className="relative hidden md:inline">{c.label}</span>
+                </button>
+              ))}
+            </div>
           </div>
-        </Reveal>
+        </div>
 
         {/* Desktop: photo stage + typographic list */}
         <div className="mt-12 hidden gap-12 lg:grid lg:grid-cols-12">
@@ -103,7 +112,6 @@ export default function Menu() {
                 animate="show"
                 exit={{ opacity: 0, y: -10, transition: { duration: 0.2 } }}
                 variants={{ show: { transition: { staggerChildren: 0.05 } } }}
-                onMouseLeave={() => {}}
               >
                 {category.items.map((item, i) => (
                   <motion.li
@@ -143,39 +151,49 @@ export default function Menu() {
           </div>
         </div>
 
-        {/* Mobile & tablet: swipeable photo rail */}
-        <div className="lg:hidden">
-          <p className="mt-6 max-w-md text-sm leading-relaxed text-roast/80">{category.note}</p>
-          <div ref={railRef} className="-mx-4 mt-6 flex scroll-px-4 snap-x snap-mandatory gap-4 overflow-x-auto px-4 pb-4 no-scrollbar sm:-mx-[4vw] sm:scroll-px-[4vw] sm:px-[4vw]">
-            <AnimatePresence mode="popLayout" initial={false}>
-              {category.items.map((item, i) => (
-                <motion.article
-                  key={item.id}
-                  initial={{ opacity: 0, x: 40 }}
-                  animate={{ opacity: 1, x: 0 }}
-                  exit={{ opacity: 0 }}
-                  transition={{ duration: 0.5, ease, delay: i * 0.04 }}
-                  className="w-[74vw] max-w-[20rem] shrink-0 snap-start"
-                >
-                  <div className="relative aspect-[4/5] overflow-hidden rounded-[2rem] bg-beige">
-                    <Img src={item.photo} alt={item.name} sizes="75vw" className="size-full object-cover" />
-                    <span className="label absolute left-4 top-4 rounded-full bg-ivory px-3 py-1 text-xs text-roast">{item.tag}</span>
-                    <span className="display absolute right-4 top-4 grid size-[4.5rem] -rotate-12 place-items-center rounded-full bg-caramel text-2xl text-ivory">{formatINR(item.price)}</span>
-                  </div>
-                  <div className="mt-4 flex items-start justify-between gap-3">
-                    <div>
-                      <h3 className="display text-[2.4rem] text-roast">{item.name}</h3>
-                      <p className="mt-1.5 text-sm leading-snug text-roast/75">{item.desc}</p>
-                    </div>
-                    <button type="button" onClick={() => add(item)} aria-label={`Add ${item.name} to your order`} className="grid size-12 shrink-0 place-items-center rounded-full bg-roast text-ivory active:scale-90">
-                      <Icon name="plus" className="size-5" />
-                    </button>
-                  </div>
-                </motion.article>
+        {/* Phones & tablets: quick-scan list with photos */}
+        <div ref={listRef} className="lg:hidden">
+          <p className="mt-4 text-sm leading-relaxed text-roast/75">{category.note}</p>
+          <AnimatePresence mode="wait" initial={false}>
+            <motion.ul
+              key={catKey}
+              initial={{ opacity: 0, y: 14 }}
+              animate={{ opacity: 1, y: 0 }}
+              exit={{ opacity: 0, y: -8 }}
+              transition={{ duration: 0.3, ease }}
+              className="mt-3 md:grid md:grid-cols-2 md:gap-x-6"
+            >
+              {category.items.map((item) => (
+                <li key={item.id} className="border-b border-dashed border-roast/25">
+                  <button
+                    type="button"
+                    onClick={() => add(item)}
+                    aria-label={`Add ${item.name}, ${formatINR(item.price)}, to your order`}
+                    className="flex w-full items-center gap-4 py-4 text-left transition-transform active:scale-[0.98]"
+                  >
+                    <span className="relative size-[5.75rem] shrink-0 overflow-hidden rounded-[1.4rem] bg-beige">
+                      <Img src={item.photo} alt="" sizes="120px" className="size-full object-cover" />
+                    </span>
+                    <span className="min-w-0 flex-1">
+                      <span className="flex items-start justify-between gap-3">
+                        <span className="display text-[1.6rem] leading-[0.95] text-roast">{item.name}</span>
+                        <span className="display shrink-0 text-[1.45rem] leading-none text-caramel">{formatINR(item.price)}</span>
+                      </span>
+                      <span className="mt-1.5 block text-[0.88rem] leading-snug text-roast/75">{item.desc}</span>
+                      <span className="mt-2.5 flex items-center justify-between gap-3">
+                        <span className="label text-[0.72rem] tracking-[0.14em] text-roast/55">{item.tag}</span>
+                        <span className="label inline-flex h-8 items-center gap-1.5 rounded-full bg-roast pl-2.5 pr-3.5 text-[0.85rem] text-ivory">
+                          <Icon name="plus" className="size-3" />
+                          Add
+                        </span>
+                      </span>
+                    </span>
+                  </button>
+                </li>
               ))}
-            </AnimatePresence>
-          </div>
-          <p className="label mt-2 text-sm text-roast/60">Swipe for more →</p>
+            </motion.ul>
+          </AnimatePresence>
+          <Button tone="outline" onClick={() => open('menu')} className="mt-7 w-full justify-between">View full menu</Button>
         </div>
       </div>
     </section>

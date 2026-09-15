@@ -49,7 +49,7 @@ export default function Signature() {
             <h3 className="display mt-4 text-5xl text-roast md:text-6xl">{signature.name}</h3>
             <p className="mt-3 text-lg leading-relaxed text-roast/85">{signature.desc}</p>
             <ul className="mt-5 flex flex-wrap gap-2">
-              {['Double shot', 'Whole or oat milk', 'House caramel', 'Hot / Iced'].map((t) => (
+              {['Double shot', 'Whole or oat milk', 'Jaggery caramel', 'Hot / Iced'].map((t) => (
                 <li key={t} className="label rounded-full border border-roast/25 px-3 py-1 text-sm text-roast">{t}</li>
               ))}
             </ul>
@@ -73,7 +73,7 @@ export default function Signature() {
             className="relative aspect-square overflow-hidden rounded-full shadow-[0_50px_90px_-50px_rgba(43,24,16,.9)]"
           >
             <motion.div style={{ rotate, scale }} className="size-full">
-              <Img src={signature.photo} alt="The Feréa Latte with rosetta latte art in a ceramic cup" sizes="(min-width: 1024px) 45vw, 90vw" className="size-full object-cover" />
+              <Img src={signature.photo} alt="The Feréa Latte with leaf latte art in a green mug" sizes="(min-width: 1024px) 45vw, 90vw" className="size-full object-cover" />
             </motion.div>
           </motion.div>
 
@@ -84,7 +84,7 @@ export default function Signature() {
           </div>
 
           <div className="absolute -left-2 top-[6%] text-roast md:-left-10">
-            <p className="-rotate-6 font-hand text-2xl leading-none md:text-3xl">house caramel</p>
+            <p className="-rotate-6 font-hand text-2xl leading-none md:text-3xl">jaggery caramel</p>
             <ScribbleArrow className="ml-10 mt-1 w-14 rotate-[40deg] text-caramel md:w-20" />
           </div>
           <div className="absolute -bottom-6 right-[4%] text-right text-roast md:-bottom-4 md:right-0">

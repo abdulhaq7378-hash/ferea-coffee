@@ -24,7 +24,7 @@ export default function Care() {
             </Reveal>
           </div>
 
-          <div className="mt-16 grid gap-16 md:mt-24 lg:grid-cols-12 lg:gap-x-8 lg:gap-y-10">
+          <div className="mt-14 grid gap-14 md:mt-24 md:gap-16 lg:grid-cols-12 lg:gap-x-8 lg:gap-y-10">
             {/* 01 — tall portrait with overlapping note */}
             <article className="relative lg:col-span-5 lg:row-span-2">
               <Reveal className="relative">
@@ -54,7 +54,7 @@ export default function Care() {
                 </ParallaxFrame>
               </Reveal>
               <Reveal delay={0.1} className="mt-6 grid gap-3 md:grid-cols-[auto_1fr] md:gap-8">
-                <p className="display text-7xl text-caramel md:text-8xl">{specialty.no}</p>
+                <p className="display text-6xl text-caramel md:text-8xl">{specialty.no}</p>
                 <div className="md:pt-3">
                   <p className="display text-3xl text-roast md:text-4xl">{specialty.heading}</p>
                   <p className="mt-2 max-w-lg leading-relaxed text-roast/80">{specialty.body}</p>
@@ -68,7 +68,7 @@ export default function Care() {
                 <p className="label text-sm text-caramel">{hospitality.no} —</p>
                 <p className="display mt-1 text-3xl text-roast md:text-4xl">{hospitality.heading}</p>
                 <p className="mt-3 leading-relaxed text-roast/80">{hospitality.body}</p>
-                <p className="mt-5 -rotate-2 font-hand text-2xl text-caramel">see you soon, neighbour.</p>
+                <p className="mt-5 hidden -rotate-2 font-hand text-2xl text-caramel sm:block">see you soon, neighbour.</p>
               </Reveal>
               <Reveal className="relative order-1 md:order-2">
                 <h3 className={`${stickerTitle} absolute -top-6 left-1/2 z-10 -translate-x-1/2 -rotate-2 whitespace-nowrap text-[2.4rem] md:text-[2.75rem]`}>{hospitality.title}</h3>

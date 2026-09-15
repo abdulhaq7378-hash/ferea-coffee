@@ -8,7 +8,7 @@ import { LineReveal, ParallaxFrame, Reveal } from './ui/Motion'
 
 const facts = [
   { value: '07:00', label: 'Doors open, and the first shot is already dialled in.' },
-  { value: '14 hrs', label: 'The slow steep behind every glass of cold brew.' },
+  { value: '16 hrs', label: 'The slow steep behind every glass of cold brew.' },
   { value: '02', label: 'Partner estates in Chikmagalur & Coorg.' },
 ]
 
@@ -37,7 +37,7 @@ export default function Story() {
               <p className="text-lg leading-relaxed text-ivory/95">
                 We believe coffee should give you a reason to slow down. Feréa brings together carefully sourced beans, fresh food and a warm space designed for everything from quiet mornings to long conversations.
               </p>
-              <p className="mt-4 leading-relaxed text-ivory/80">
+              <p className="mt-4 hidden leading-relaxed text-ivory/80 sm:block">
                 Tucked just off End Point Road, a few minutes from the lake, we’re the neighbourhood table for students, early walkers, weekend families and anyone who needs a good cup and a little quiet.
               </p>
               <p className="mt-6 -rotate-2 font-hand text-3xl text-espresso">— the Feréa team</p>
@@ -45,7 +45,7 @@ export default function Story() {
 
             <div className="relative order-1 mx-auto w-full max-w-[26rem] lg:order-2 lg:col-span-6 lg:max-w-[28rem]">
               <ParallaxFrame className="aspect-[4/5] rounded-[2rem] shadow-[0_40px_80px_-40px_rgba(43,24,16,.8)] md:rounded-[3rem]" strength={50}>
-                <Img src={photos.storyIced} alt="An iced coffee with milk swirling through the glass" sizes="(min-width: 1024px) 30vw, 80vw" />
+                <Img src={photos.storyIced} alt="A smiling guest holding a latte with heart latte art" sizes="(min-width: 1024px) 30vw, 80vw" />
               </ParallaxFrame>
 
               <motion.div style={{ y: b1, rotate: r }} className="pointer-events-none absolute -left-8 top-[18%] w-16 md:-left-20 md:w-24">
@@ -60,21 +60,21 @@ export default function Story() {
 
               <div className="absolute -bottom-16 right-0 hidden items-end gap-2 text-espresso md:flex md:-right-10">
                 <ScribbleArrow className="mb-4 w-14 -rotate-[100deg]" />
-                <p className="-rotate-3 whitespace-nowrap font-hand text-2xl leading-tight">cold brew over hand-cut ice</p>
+                <p className="-rotate-3 whitespace-nowrap font-hand text-2xl leading-tight">the first cup of the morning</p>
               </div>
             </div>
 
-            <ul className="order-3 lg:col-span-3 lg:pb-10">
+            <ul className="order-3 grid grid-cols-3 gap-3 border-t border-dashed border-ivory/40 pt-6 lg:col-span-3 lg:block lg:border-t-0 lg:pb-10 lg:pt-0">
               {facts.map((f, i) => (
-                <Reveal as="li" key={f.value} delay={i * 0.08} className="border-t border-dashed border-ivory/40 py-5 first:border-t-0 lg:first:border-t">
-                  <p className="display text-5xl text-ivory md:text-6xl">{f.value}</p>
-                  <p className="mt-2 max-w-[16rem] text-sm leading-relaxed text-ivory/85">{f.label}</p>
+                <Reveal as="li" key={f.value} delay={i * 0.08} className="lg:border-t lg:border-dashed lg:border-ivory/40 lg:py-5">
+                  <p className="display text-[2rem] text-ivory sm:text-5xl md:text-6xl">{f.value}</p>
+                  <p className="mt-1 text-[0.75rem] leading-snug text-ivory/85 sm:mt-2 sm:text-sm sm:leading-relaxed lg:max-w-[16rem]">{f.label}</p>
                 </Reveal>
               ))}
             </ul>
           </div>
 
-          <Reveal className="mt-16 flex justify-center md:mt-20">
+          <Reveal className="mt-16 hidden justify-center md:mt-20 md:flex">
             <a href="#menu" aria-label="Scroll to the menu" className="group">
               <RotatingBadge text="DISCOVER MORE • SEE THE MENU • " className="size-28 md:size-32">
                 <span className="grid size-12 place-items-center rounded-full border-[1.5px] border-ivory/60 transition-colors duration-300 group-hover:bg-ivory group-hover:text-caramel">

@@ -8,6 +8,7 @@ import FinalCta from './components/FinalCta'
 import Footer from './components/Footer'
 import Hero from './components/Hero'
 import Menu from './components/Menu'
+import MobileBar from './components/MobileBar'
 import Navbar from './components/Navbar'
 import Overlays from './components/Overlays'
 import Place from './components/Place'
@@ -25,9 +26,24 @@ const routeFromHash = () => {
   return h.startsWith('#/') ? h.slice(2) || '404' : null
 }
 
+// The intro curtain plays once per visit, then gets out of the way.
+const INTRO_KEY = 'ferea-intro-seen'
+const introSeen = () => {
+  try {
+    return sessionStorage.getItem(INTRO_KEY) === '1'
+  } catch {
+    return false
+  }
+}
+
 function Intro({ onDone }) {
   useEffect(() => {
-    const t = setTimeout(onDone, 1250)
+    try {
+      sessionStorage.setItem(INTRO_KEY, '1')
+    } catch {
+      /* storage unavailable — intro simply plays again next time */
+    }
+    const t = setTimeout(onDone, 900)
     return () => clearTimeout(t)
   }, [onDone])
   return (
@@ -51,8 +67,8 @@ function Intro({ onDone }) {
 
 export default function App() {
   const [route, setRoute] = useState(routeFromHash)
-  const [intro, setIntro] = useState(() => !routeFromHash())
-  const [ready, setReady] = useState(() => !!routeFromHash())
+  const [intro, setIntro] = useState(() => !routeFromHash() && !introSeen())
+  const [ready, setReady] = useState(() => !!routeFromHash() || introSeen())
   const prevRoute = useRef(route)
 
   useEffect(() => {
@@ -111,6 +127,7 @@ export default function App() {
             </main>
           )}
           <Footer />
+          <MobileBar />
           <Overlays />
         </div>
         <AnimatePresence>

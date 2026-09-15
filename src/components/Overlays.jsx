@@ -141,7 +141,7 @@ function OrderDrawer({ onClose }) {
                         <Img src={item.photo} alt="" sizes="200px" className="aspect-[4/3] w-full rounded-2xl object-cover" />
                       ) : (
                         <span className="grid aspect-[4/3] w-full place-items-center rounded-2xl bg-caramel text-center text-ivory">
-                          <span className="display text-2xl leading-none">Latte +<br />croissant</span>
+                          <span className="display text-2xl leading-none">Cappuccino<br />+ croissant</span>
                         </span>
                       )}
                       <span className="mt-2 flex items-center justify-between gap-2">
@@ -345,7 +345,7 @@ function Article({ slug, onClose }) {
 function Toast() {
   const { toast, open } = useStore()
   return (
-    <div className="pointer-events-none fixed inset-x-0 bottom-5 z-[90] flex justify-center px-4" aria-live="polite">
+    <div className="pointer-events-none fixed inset-x-0 bottom-[calc(5.25rem+env(safe-area-inset-bottom))] z-[90] flex justify-center px-4 md:bottom-5" aria-live="polite">
       <AnimatePresence>
         {toast && (
           <motion.div

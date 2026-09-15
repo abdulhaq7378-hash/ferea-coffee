@@ -34,7 +34,7 @@ Everything a café owner would change lives in **`src/data/content.js`**:
 | Signature drink / breakfast combo | `signature`, `combo` |
 | Care blocks, places, reviews, blog posts, FAQs | `careBlocks`, `places`, `testimonials`, `posts`, `faqs` |
 
-Photos are referenced by Unsplash photo id (e.g. `'1541167760496-1628856ab772'`). To use your own photography, drop files in `public/images/` and replace the id with a path such as `'/images/latte.jpg'` — the `Img` component handles both.
+Photos are referenced by Unsplash photo id (e.g. `'1541167760496-1628856ab772'`) or Pexels id (e.g. `'31774138'`, or `'33932441.png'` for PNG originals). To use your own photography, drop files in `public/images/` and replace the id with a path such as `'/images/latte.jpg'` — the `Img` component handles both.
 
 ## Structure
 

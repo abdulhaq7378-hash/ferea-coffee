@@ -35,7 +35,7 @@ export default function Combo() {
             transition={{ duration: 1.1, ease }}
             className="absolute left-0 top-0 aspect-[4/5] w-[66%] overflow-hidden rounded-[2.25rem] shadow-[0_40px_70px_-40px_rgba(43,24,16,.8)]"
           >
-            <Img src={photos.comboLatte} alt="A latte with heart latte art" sizes="(min-width: 1024px) 26vw, 64vw" className="size-full object-cover" />
+            <Img src={photos.comboLatte} alt="A cappuccino with latte art in a speckled cup" sizes="(min-width: 1024px) 26vw, 64vw" className="size-full object-cover" />
           </motion.div>
           <motion.div
             initial={{ opacity: 0, rotate: 0, y: 80 }}

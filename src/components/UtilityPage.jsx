@@ -14,7 +14,7 @@ export default function UtilityPage({ route }) {
       <Shell label="License" title={['License']}>
         <div className="max-w-2xl space-y-5 text-lg leading-relaxed text-roast/85">
           <p>Feréa Coffee House is a fictional café created as a web design portfolio concept by Abdul Haq. It is not a real business, and no products are sold through this site.</p>
-          <p>Photography is sourced from <a className="text-caramel underline underline-offset-4" href="https://unsplash.com/license" target="_blank" rel="noopener noreferrer">Unsplash</a> and used under the Unsplash License. Fonts — Anton, Barlow Condensed, DM Sans and Caveat Brush — are used under the SIL Open Font License.</p>
+          <p>Photography is sourced from <a className="text-caramel underline underline-offset-4" href="https://unsplash.com/license" target="_blank" rel="noopener noreferrer">Unsplash</a> and <a className="text-caramel underline underline-offset-4" href="https://www.pexels.com/license/" target="_blank" rel="noopener noreferrer">Pexels</a>, used under their free licenses. No photos are of real, named cafés. Fonts — Anton, Barlow Condensed, DM Sans and Caveat Brush — are used under the SIL Open Font License.</p>
           <p>The Feréa name, logo mark, illustrations, copy and layout were designed for this concept. Guest reviews and articles are illustrative.</p>
         </div>
       </Shell>

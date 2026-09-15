@@ -5,10 +5,11 @@ import { useStore } from '../store'
 import Button from './ui/Button'
 import { Bean, CupDoodle, GoodMoodSticker, Icon, RotatingBadge, ScribbleArrow } from './ui/Graphics'
 import Img from './ui/Img'
-import { ease } from './ui/Motion'
+import { ease, useIsMobile } from './ui/Motion'
 
 export default function Hero({ ready = true }) {
   const { open } = useStore()
+  const mobile = useIsMobile()
   const ref = useRef(null)
   const { scrollYProgress } = useScroll({ target: ref, offset: ['start start', 'end start'] })
   const imgY = useTransform(scrollYProgress, [0, 1], ['0%', '14%'])
@@ -31,10 +32,10 @@ export default function Hero({ ready = true }) {
   }
 
   return (
-    <section id="top" ref={ref} className="relative overflow-hidden pb-16 pt-24 md:pb-24 md:pt-32 lg:pt-36">
-      <div className="container-x grid items-center gap-y-12 lg:grid-cols-12 lg:gap-x-6">
+    <section id="top" ref={ref} className="relative overflow-hidden pb-14 pt-[5.5rem] md:pb-24 md:pt-32 lg:pt-36">
+      <div className="container-x grid items-center gap-y-10 md:gap-y-12 lg:grid-cols-12 lg:gap-x-6">
         {/* ——— Headline column ——— */}
-        <motion.div style={{ y: headY }} className="relative z-10 lg:col-span-7">
+        <motion.div style={{ y: mobile ? 0 : headY }} className="relative z-10 lg:col-span-7">
           <motion.p initial="hidden" animate={play} variants={fade} custom={0.15} className="label mb-5 ml-[7.5rem] flex items-center gap-3 text-[0.8rem] text-caramel sm:text-[0.95rem] md:mb-7 md:ml-44 lg:ml-48">
             <span className="h-px w-6 bg-current sm:w-10" />
             <span className="sm:hidden">Coffee house · Manipal</span>
@@ -73,17 +74,17 @@ export default function Hero({ ready = true }) {
             </span>
           </h1>
 
-          <motion.div initial="hidden" animate={play} variants={fade} custom={0.9} className="mt-10 grid gap-8 md:mt-14 md:grid-cols-[minmax(0,26rem)_auto] md:items-end md:gap-10">
-            <p className="text-lg leading-relaxed text-roast md:text-xl">
+          <motion.div initial="hidden" animate={play} variants={fade} custom={0.9} className="mt-8 grid gap-8 md:mt-14 md:grid-cols-[minmax(0,26rem)_auto] md:items-end md:gap-10">
+            <p className="text-[1.05rem] leading-relaxed text-roast sm:text-lg md:text-xl">
               Specialty coffee, freshly baked treats and slow moments in the heart of Manipal.
             </p>
           </motion.div>
-          <motion.div initial="hidden" animate={play} variants={fade} custom={1.05} className="mt-7 flex flex-wrap items-center gap-3">
-            <Button size="lg" onClick={() => open('order')}>Order now</Button>
-            <Button size="lg" tone="outline" href="#menu">Explore menu</Button>
+          <motion.div initial="hidden" animate={play} variants={fade} custom={1.05} className="mt-6 grid grid-cols-2 gap-2 sm:mt-7 sm:flex sm:flex-wrap sm:items-center sm:gap-3">
+            <Button onClick={() => open('order')} className="w-full justify-between sm:h-14 sm:w-auto sm:gap-5 sm:pl-7 sm:text-xl">Order now</Button>
+            <Button tone="outline" href="#menu" className="w-full justify-between sm:h-14 sm:w-auto sm:gap-5 sm:pl-7 sm:text-xl"><span className="sm:hidden">Menu</span><span className="hidden sm:inline">Explore menu</span></Button>
           </motion.div>
 
-          <motion.ul initial="hidden" animate={play} variants={fade} custom={1.2} className="mt-10 flex flex-wrap gap-x-7 gap-y-2 text-sm text-roast/80">
+          <motion.ul initial="hidden" animate={play} variants={fade} custom={1.2} className="mt-6 flex flex-wrap gap-x-6 gap-y-2 text-sm text-roast/80 md:mt-10">
             <li className="flex items-center gap-2"><Icon name="pin" className="size-4 text-caramel" />Near Manipal Lake</li>
             <li className="flex items-center gap-2"><Icon name="clock" className="size-4 text-caramel" />Open daily from {brand.hours[0].time.slice(0, 5)}</li>
           </motion.ul>
@@ -98,9 +99,9 @@ export default function Hero({ ready = true }) {
               transition={{ duration: 1.4, ease, delay: 0.35 }}
               className="absolute inset-0 overflow-hidden rounded-b-[2.5rem] rounded-t-[999px] bg-beige"
             >
-              <motion.div style={{ y: imgY }} className="absolute -inset-y-[8%] inset-x-0">
+              <motion.div style={{ y: mobile ? 0 : imgY }} className="absolute -inset-y-[8%] inset-x-0">
                 <motion.div initial={{ scale: 1.25 }} animate={ready ? { scale: 1 } : undefined} transition={{ duration: 2, ease, delay: 0.35 }} className="size-full">
-                  <Img src={photos.heroPour} alt="A barista pouring steamed milk into a latte, forming latte art" priority sizes="(min-width: 1024px) 34vw, 80vw" className="size-full object-cover" />
+                  <Img src={photos.heroPour} alt="Two frothy South Indian filter coffees in steel tumblers and davaras" priority sizes="(min-width: 1024px) 34vw, 80vw" className="size-full object-cover" />
                 </motion.div>
               </motion.div>
             </motion.div>
@@ -129,8 +130,8 @@ export default function Hero({ ready = true }) {
               transition={{ duration: 1.1, ease, delay: 1.1 }}
               className="absolute -bottom-8 -left-6 w-[38%] bg-[#fffaf2] p-2 pb-1 shadow-[0_24px_50px_-20px_rgba(43,24,16,.55)] sm:-left-14"
             >
-              <Img src={photos.heroEspresso} alt="An espresso cup catching morning sunlight" sizes="200px" className="aspect-square w-full object-cover" />
-              <figcaption className="py-1.5 text-center font-hand text-lg text-roast md:text-xl">the 7am shot</figcaption>
+              <Img src={photos.heroEspresso} alt="Hands passing a glass of cutting chai in golden light" sizes="200px" className="aspect-square w-full object-cover" />
+              <figcaption className="py-1.5 text-center font-hand text-lg text-roast md:text-xl">the 7am chai</figcaption>
             </motion.figure>
 
             {/* handwritten note */}

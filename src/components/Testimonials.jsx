@@ -42,8 +42,8 @@ export default function Testimonials() {
 
           <div className="mt-14 grid items-center gap-14 md:mt-20 lg:grid-cols-12 lg:gap-8">
             <Reveal className="order-2 text-center lg:order-1 lg:col-span-4 lg:text-left">
-              <p className="display text-[5.5rem] leading-none text-espresso/30 md:text-[8rem]">“</p>
-              <p className="-mt-6 text-lg leading-relaxed text-ivory/90 md:text-xl">
+              <p className="display hidden leading-none text-espresso/30 md:block md:text-[8rem]">“</p>
+              <p className="text-lg leading-relaxed text-ivory/90 md:-mt-6 md:text-xl">
                 From the first morning coffee to slow afternoons, see why our guests keep coming back for another cup.
               </p>
               <div className="mt-8 flex items-center justify-center gap-4 lg:justify-start">

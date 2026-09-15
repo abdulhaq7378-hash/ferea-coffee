@@ -37,7 +37,7 @@ export default function Footer() {
 
   return (
     <footer id="contact" className="mt-6 bg-espresso text-ivory md:mt-8">
-      <div className="container-x pb-8 pt-16 md:pt-24">
+      <div className="container-x pb-10 pt-14 md:pb-8 md:pt-24">
         <div className="grid gap-12 lg:grid-cols-12 lg:items-end">
           <div className="lg:col-span-7">
             <p className="flex items-center gap-3 md:gap-5">
@@ -80,7 +80,7 @@ export default function Footer() {
           </div>
         </div>
 
-        <div className="dashed-rule my-12 text-ivory/30 md:my-16" />
+        <div className="dashed-rule my-10 text-ivory/30 md:my-16" />
 
         <div className="grid grid-cols-2 gap-x-6 gap-y-10 md:grid-cols-4 lg:grid-cols-12">
           <Col title="Socials" className="col-span-2 md:col-span-1 lg:col-span-2">

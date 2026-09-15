@@ -69,7 +69,8 @@
 }
 
 @layer components {
-  /* Fine paper grain laid over the whole page */
+  /* Fine paper grain laid over the whole page — desktop only, blended full-screen layers are costly on phones */
+  @media (hover: hover) and (pointer: fine) {
   .grain::after {
     content: '';
     position: fixed;
@@ -79,6 +80,7 @@
     opacity: 0.07;
     mix-blend-mode: multiply;
     background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='220' height='220'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.85' numOctaves='3' stitchTiles='stitch'/%3E%3CfeColorMatrix values='0 0 0 0 0.23 0 0 0 0 0.13 0 0 0 0 0.09 0 0 0 1 0'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
+  }
   }
 
   /* Letterpress-style speckled ink for the biggest headlines */
