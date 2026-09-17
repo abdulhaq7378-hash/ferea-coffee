@@ -54,3 +54,8 @@ src/
 ## Credits
 
 Photography from [Unsplash](https://unsplash.com/license). Fonts under the SIL Open Font License.
+
+## Author
+
+Designed and built by **Mohammed Abdul Haq** — B.Tech Biomedical Engineering, MIT Manipal.  
+Portfolio: https://abdulhaq7378-hash.github.io · LinkedIn: https://www.linkedin.com/in/mohammed-abdul-haq-a0b946321
